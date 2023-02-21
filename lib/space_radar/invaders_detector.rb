@@ -20,7 +20,7 @@ module SpaceRadar
 
         (0..@radar.length - invader_height).each do |i|
           (0..@radar[0].length - invader_width).each do |j|
-            if is_invader?(i, j, invader)
+            if invader?(i, j, invader)
               invader_counts[invader] += 1
               highlight_invader(i, j, invader)
             end
@@ -31,41 +31,41 @@ module SpaceRadar
       invader_counts
     end
 
-    def match_score(invader, i, j)
-      invader_height = invader.length
-      invader_width = invader.first.length
-      match_score = 0
+    # def match_score(invader, i, j)
+    #   # invader_height = invader.length
+    #   # invader_width = invader.first.length
+    #   match_score = 0
 
-      invader.each_with_index do |row, row_index|
-        row.each_with_index do |col, col_index|
-          if col == 'o'
-            if @radar[i + row_index][j + col_index] == 'o'
-              match_score += 1
-            else
-              match_score -= 1
-            end
-          end
-        end
-      end
+    #   invader.each_with_index do |row, row_index|
+    #     row.each_with_index do |col, col_index|
+    #       if col == 'o'
+    #         if @radar[i + row_index][j + col_index] == 'o'
+    #           match_score += 1
+    #         else
+    #           match_score -= 1
+    #         end
+    #       end
+    #     end
+    #   end
 
-      match_score
-    end
+    #   match_score
+    # end
 
     private
 
-    def is_invader?(i, j, invader)
+    def invader?(i_coordinate, j_coordinate, invader)
       invader.each_with_index do |row, row_index|
         row.each_with_index do |col, col_index|
-          return false if col == 'o' && @radar[i + row_index][j + col_index] != 'o'
+          return false if col == 'o' && @radar[i_coordinate + row_index][j_coordinate + col_index] != 'o'
         end
       end
       true
     end
 
-    def highlight_invader(i, j, invader)
+    def highlight_invader(i_coordinate, j_coordinate, invader)
       invader.each_with_index do |row, row_index|
         row.each_with_index do |col, col_index|
-          @radar_with_results[i + row_index][j + col_index] = 'X' if col == 'o'
+          @radar_with_results[i_coordinate + row_index][j_coordinate + col_index] = 'X' if col == 'o'
         end
       end
     end

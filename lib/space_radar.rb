@@ -26,17 +26,8 @@ module SpaceRadar
 
       @invaders_guide = SpaceRadar::Uploaders.upload_invaders(@invaders_guide_folder)
 
-      puts 'RADAR:'
-      SpaceRadar::Display.show(@radar)
-
-      puts 'INVADERS:'
-      @invaders_guide.each do |invader|
-        SpaceRadar::Display.show(invader)
-      end
-
       invaders_found = SpaceRadar::InvaderDetector.new(@invaders_guide, @radar, @radar_with_results).find_invaders
 
-      puts 'HIGHLIGHTED INVADERS:'
       SpaceRadar::Display.show(@radar_with_results)
 
       invaders_found
