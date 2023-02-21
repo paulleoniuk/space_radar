@@ -3,12 +3,11 @@
 # Invader Detection
 module SpaceRadar
   class InvaderDetector
-    def initialize(invaders, radar, _radar_with_results)
+    def initialize(invaders, radar, radar_with_results)
       @invaders = invaders
       @radar = radar
-      @radar_with_results = radar.dup
+      @radar_with_results = radar_with_results
 
-      # SpaceRadar::Display.show(@radar)
     end
 
     def find_invaders
@@ -30,26 +29,6 @@ module SpaceRadar
 
       invader_counts
     end
-
-    # def match_score(invader, i, j)
-    #   # invader_height = invader.length
-    #   # invader_width = invader.first.length
-    #   match_score = 0
-
-    #   invader.each_with_index do |row, row_index|
-    #     row.each_with_index do |col, col_index|
-    #       if col == 'o'
-    #         if @radar[i + row_index][j + col_index] == 'o'
-    #           match_score += 1
-    #         else
-    #           match_score -= 1
-    #         end
-    #       end
-    #     end
-    #   end
-
-    #   match_score
-    # end
 
     private
 

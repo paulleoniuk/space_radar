@@ -6,9 +6,7 @@ require 'space_radar/uploaders'
 require 'space_radar/version'
 
 module SpaceRadar
-  class Error < StandardError
-    # Your code goes here...
-  end
+  class Error < StandardError; end
 
   class Scanner
     def initialize(invaders_guide_folder, radar_file)
