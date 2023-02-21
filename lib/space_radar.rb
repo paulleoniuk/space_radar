@@ -11,7 +11,6 @@ module SpaceRadar
   end
 
   class Scanner
-
     def initialize(invaders_guide_folder, radar_file)
       @invaders_guide_folder = invaders_guide_folder
       @radar_file = radar_file
@@ -19,7 +18,6 @@ module SpaceRadar
       @invaders_guide = nil
       @radar = nil
       @radar_with_results = nil
-
     end
 
     def scan_for_invaders
@@ -36,11 +34,12 @@ module SpaceRadar
         SpaceRadar::Display.show(invader)
       end
 
-      result = SpaceRadar::InvaderDetector.new(@invaders_guide, @radar, @radar_with_results).find_invaders
+      invaders_found = SpaceRadar::InvaderDetector.new(@invaders_guide, @radar, @radar_with_results).find_invaders
 
       puts 'HIGHLIGHTED INVADERS:'
       SpaceRadar::Display.show(@radar_with_results)
-    end
 
+      invaders_found
+    end
   end
 end

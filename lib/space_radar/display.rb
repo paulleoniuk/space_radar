@@ -1,16 +1,19 @@
-module SpaceRadar::Display
-	extend self
+# frozen_string_literal: true
 
-	def show(matrix_array)
-		return puts 'Nothing to show...' if matrix_array.nil? || matrix_array.empty?
+module SpaceRadar
+  module Display
+    module_function
 
-	  print_formatted_info(matrix_array.map { |row| row.join(' ') })
-	end
+    def show(matrix_array)
+      return puts 'Nothing to show...' if matrix_array.nil? || matrix_array.empty?
 
-  def print_formatted_info(text)
-  	puts '~~~~~~~~~~~~~~~~~'
-		puts text
-		puts '~~~~~~~~~~~~~~~~~'
+      print_formatted_info(matrix_array.map { |row| row.join(' ') })
+    end
+
+    def print_formatted_info(text)
+      puts '~~~~~~~~~~~~~~~~~'
+      puts text
+      puts '~~~~~~~~~~~~~~~~~'
+    end
   end
 end
-
