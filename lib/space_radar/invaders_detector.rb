@@ -11,13 +11,11 @@ module SpaceRadar
 
     def find_invaders
       invader_counts = Hash.new(0)
+      @invaders.map { |invader| invader_counts[invader] = 0 }
 
       @invaders.each do |invader|
-        invader_height = invader.length
-        invader_width = invader.first.length
-
-        (0..@radar.length - invader_height).each do |i|
-          (0..@radar[0].length - invader_width).each do |j|
+        (0..@radar.length - invader.length).each do |i|
+          (0..@radar[0].length - invader[0].length).each do |j|
             if invader?(i, j, invader)
               invader_counts[invader] += 1
               highlight_invader(i, j, invader)

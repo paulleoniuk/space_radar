@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 RSpec.describe SpaceRadar do
   it 'has a version number' do
     expect(SpaceRadar::VERSION).not_to be_nil

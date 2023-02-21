@@ -26,6 +26,8 @@ module SpaceRadar
 
       invaders = []
       Dir.glob("#{folder_path}/*.txt").each do |invader_file|
+        validate_file(invader_file)
+        validate_file_extension(invader_file)
         invaders << File.readlines(invader_file, chomp: true).map(&:chars)
       end
       invaders.reject! { |invader| invader.flatten.all? { |c| c == '.' } }
