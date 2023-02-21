@@ -1,4 +1,6 @@
-require "space_radar/version"
+# frozen_string_literal: true
+
+require 'space_radar/version'
 
 module SpaceRadar
   class Error < StandardError; end

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 RSpec.describe SpaceRadar do
-  it "has a version number" do
-    expect(SpaceRadar::VERSION).not_to be nil
+  it 'has a version number' do
+    expect(SpaceRadar::VERSION).not_to be_nil
   end
 
-  it "does something useful" do
-    expect(true).to eq(true)
+  it 'has something useful' do
+    # expect(true).to be(true)
   end
 end
