@@ -10,6 +10,6 @@ RSpec.describe SpaceRadar do
 
     invaders_found = scanner.scan_for_invaders
 
-    expect(invaders_found.values).to eq([1])
+    expect(invaders_found.values).to eq([1,0])
   end
 end

@@ -1,6 +1,6 @@
 # SpaceRadar
 
-Space Radar is a command line tool that scans a radar file and checks it for the presence of space invader patterns.
+Space Radar is a gem that scans a radar file and checks it for the presence of space invader patterns.
 
 ## Installation
 
@@ -29,11 +29,6 @@ This will load all the space invader patterns from the invaders/ folder and scan
 
 After scanning, Space Radar will print out a list of the detected space invaders and the number of times they were found.
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
