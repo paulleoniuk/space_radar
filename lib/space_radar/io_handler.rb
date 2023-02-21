@@ -1,8 +1,20 @@
 # frozen_string_literal: true
 
 module SpaceRadar
-  module Uploaders
+  module IOhandler
     module_function
+
+    def show(matrix_array)
+      return puts 'Nothing to show...' if matrix_array.nil? || matrix_array.empty?
+
+      print_formatted_info(matrix_array.map { |row| row.join(' ') })
+    end
+
+    def print_formatted_info(text)
+      puts '~~~~~~~~~~~~~~~~~'
+      puts text
+      puts '~~~~~~~~~~~~~~~~~'
+    end
 
     def upload_radar(file)
       File.readlines(file, chomp: true).map(&:chars)

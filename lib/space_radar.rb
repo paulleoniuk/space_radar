@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'space_radar/display'
+require 'space_radar/io_handler'
 require 'space_radar/invaders_detector'
-require 'space_radar/uploaders'
 require 'space_radar/version'
 
 module SpaceRadar
@@ -19,14 +18,13 @@ module SpaceRadar
     end
 
     def scan_for_invaders
-      @radar = SpaceRadar::Uploaders.upload_radar(@radar_file)
+      @radar = SpaceRadar::IOhandler.upload_radar(@radar_file)
+      @invaders_guide = SpaceRadar::IOhandler.upload_invaders(@invaders_guide_folder)
       @radar_with_results = @radar.dup # Copy to highlight invaders later
-
-      @invaders_guide = SpaceRadar::Uploaders.upload_invaders(@invaders_guide_folder)
 
       invaders_found = SpaceRadar::InvaderDetector.new(@invaders_guide, @radar, @radar_with_results).find_invaders
 
-      SpaceRadar::Display.show(@radar_with_results)
+      SpaceRadar::IOhandler.show(@radar_with_results)
 
       invaders_found
     end

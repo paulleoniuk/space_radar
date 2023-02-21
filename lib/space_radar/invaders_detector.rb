@@ -7,7 +7,6 @@ module SpaceRadar
       @invaders = invaders
       @radar = radar
       @radar_with_results = radar_with_results
-
     end
 
     def find_invaders
