@@ -11,20 +11,16 @@ module SpaceRadar
     def initialize(invaders_guide_folder, radar_file)
       @invaders_guide_folder = invaders_guide_folder
       @radar_file = radar_file
-
-      @invaders_guide = nil
-      @radar = nil
-      @radar_with_results = nil
     end
 
     def scan_for_invaders
-      @radar = SpaceRadar::IOhandler.upload_radar(@radar_file)
-      @invaders_guide = SpaceRadar::IOhandler.upload_invaders(@invaders_guide_folder)
-      @radar_with_results = @radar.dup # Copy to highlight invaders later
+      radar = SpaceRadar::IOhandler.upload_radar(@radar_file)
+      invaders = SpaceRadar::IOhandler.upload_invaders(@invaders_guide_folder)
+      radar_with_results = radar.dup # Copy to highlight invaders later
 
-      invaders_found = SpaceRadar::InvaderDetector.new(@invaders_guide, @radar, @radar_with_results).find_invaders
+      invaders_found = SpaceRadar::InvaderDetector.new(invaders, radar, radar_with_results).find_invaders
 
-      SpaceRadar::IOhandler.show(@radar_with_results)
+      SpaceRadar::IOhandler.show(radar_with_results)
 
       invaders_found
     end

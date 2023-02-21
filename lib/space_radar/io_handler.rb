@@ -5,8 +5,6 @@ module SpaceRadar
     module_function
 
     def show(matrix_array)
-      return puts 'Nothing to show...' if matrix_array.nil? || matrix_array.empty?
-
       print_formatted_info(matrix_array.map { |row| row.join(' ') })
     end
 
@@ -16,18 +14,38 @@ module SpaceRadar
       puts '~~~~~~~~~~~~~~~~~'
     end
 
-    def upload_radar(file)
-      File.readlines(file, chomp: true).map(&:chars)
+    def upload_radar(file_path)
+      validate_file(file_path)
+      validate_file_extension(file_path)
+
+      File.readlines(file_path, chomp: true).map(&:chars)
     end
 
-    def upload_invaders(invaders_folder)
+    def upload_invaders(folder_path)
+      validate_folder(folder_path)
+
       invaders = []
-      Dir.glob("#{invaders_folder}/*.txt").each do |invader_file|
+      Dir.glob("#{folder_path}/*.txt").each do |invader_file|
         invaders << File.readlines(invader_file, chomp: true).map(&:chars)
       end
       invaders.reject! { |invader| invader.flatten.all? { |c| c == '.' } }
 
       invaders
+    end
+
+    def validate_file(file_path)
+      raise ArgumentError, "Invalid file path: #{file_path}" unless File.exist?(file_path)
+    end
+
+    def validate_folder(folder_path)
+      raise ArgumentError, "Invalid folder path: #{folder_path}" unless Dir.exist?(folder_path)
+    end
+
+    def validate_file_extension(file_path)
+      return if File.extname(file_path) == '.txt'
+
+      raise ArgumentError,
+            "Invalid file extension for: #{file_path}. Should be .txt"
     end
   end
 end
