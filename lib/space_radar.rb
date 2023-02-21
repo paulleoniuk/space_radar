@@ -14,7 +14,7 @@ module SpaceRadar
     end
 
     def scan_for_invaders
-      radar = SpaceRadar::IOhandler.upload_radar(@radar_file)
+      radar = SpaceRadar::IOhandler.upload_file(@radar_file)
       invaders = SpaceRadar::IOhandler.upload_invaders(@invaders_guide_folder)
       radar_with_results = radar.dup # Copy to highlight invaders later
 

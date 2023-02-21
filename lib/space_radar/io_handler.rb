@@ -14,7 +14,7 @@ module SpaceRadar
       puts '~~~~~~~~~~~~~~~~~'
     end
 
-    def upload_radar(file_path)
+    def upload_file(file_path)
       validate_file(file_path)
       validate_file_extension(file_path)
 
@@ -26,9 +26,7 @@ module SpaceRadar
 
       invaders = []
       Dir.glob("#{folder_path}/*.txt").each do |invader_file|
-        validate_file(invader_file)
-        validate_file_extension(invader_file)
-        invaders << File.readlines(invader_file, chomp: true).map(&:chars)
+        invaders << upload_file(invader_file)
       end
       invaders.reject! { |invader| invader.flatten.all? { |c| c == '.' } }
 

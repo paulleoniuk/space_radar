@@ -4,7 +4,7 @@ require 'tempfile'
 
 module SpaceRadar
   RSpec.describe IOhandler do
-    describe '#upload_radar' do
+    describe '#upload_file' do
       context 'with a valid file path' do
         let(:file) do
           Tempfile.new(['test_radar', '.txt']).tap do |f|
@@ -22,13 +22,13 @@ module SpaceRadar
             %w[o - o]
           ]
 
-          expect(described_class.upload_radar(file.path)).to eq(expected_matrix)
+          expect(described_class.upload_file(file.path)).to eq(expected_matrix)
         end
       end
 
       context 'with an invalid file path' do
         it 'raises an ArgumentError' do
-          expect { described_class.upload_radar('/invalid/file/path') }
+          expect { described_class.upload_file('/invalid/file/path') }
             .to raise_exception(ArgumentError, 'Invalid file path: /invalid/file/path')
         end
       end
@@ -46,7 +46,7 @@ module SpaceRadar
         before { allow(File).to receive(:extname).with(file.path).and_return('.pdf') }
 
         it 'raises an ArgumentError' do
-          expect { described_class.upload_radar(file.path) }
+          expect { described_class.upload_file(file.path) }
             .to raise_exception(ArgumentError, "Invalid file extension for: #{file.path}. Should be .txt")
         end
       end
